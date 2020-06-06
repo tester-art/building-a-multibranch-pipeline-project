@@ -2,14 +2,17 @@
 @NonCPS
 def getChangedFilesList() {
 
-    changedFiles = []
+                sh (
+        script: 'mkdir -p deploy_tmp',
+        returnStdout: true
+    )
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
                 sh (
-        script: 'mkdir -p deploy_tmp',
+        script: 'mv ' + file.getPath() + ' deploy_tmp',
         returnStdout: true
     )
             }
