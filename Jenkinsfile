@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "changes : " + getChangedFilesList()
-                getChangedFilesList().each { println it }
+                getChangedFilesList().each { val -> println val }
 
             }
         }
