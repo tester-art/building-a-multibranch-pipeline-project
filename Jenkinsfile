@@ -11,7 +11,7 @@ def getChangedFilesList() {
                 if(file.getEditType().getName().equals("add")||file.getEditType().getName().equals("edit")) {
                 changedFiles.add(bool)
                 }
-                if (bool.contains('J')) {
+                if (bool.contains('P')) {
                     echo "YES"
                 }
             }
