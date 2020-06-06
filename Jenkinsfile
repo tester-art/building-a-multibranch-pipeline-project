@@ -14,6 +14,9 @@ def getChangedFilesList() {
                 if (bool.contains('testdir/')) {
                     echo "YES"
                 }
+                if (bool.exists()) {
+                    echo "YES2"
+                }
             }
         }
     }
