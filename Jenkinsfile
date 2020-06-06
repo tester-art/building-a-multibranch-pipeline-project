@@ -21,7 +21,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                echo "changes : " + getChangedFilesList()
                 sh 'ls deploy_tmp'
             }
         }
