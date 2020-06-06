@@ -7,11 +7,6 @@ String getChangedFilesList() {
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
-                echo "CHANGED : " + file.getPath()
-                def exists = file.getPath().toString().exists()
-                if (exists){
-                    echo 'YES'
-                }
             }
         }
     }
@@ -26,7 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                getChangedFilesList()
+                def list = getChangedFilesList()
+                echo list
             }
         }
     }
