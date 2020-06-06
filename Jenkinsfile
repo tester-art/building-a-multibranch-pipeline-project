@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                echo "chnaged : " + getChangedFilesList()
+                echo "chnaged : " + getChangedFilesList().unique()
             }
         }
     }
