@@ -9,12 +9,7 @@ def getChangedFilesList() {
                 echo "type : " + file.getEditType().getName()
                 bool = file.getPath().toString()
                 echo "BOO " + bool
-                if (fileExists(bool)) {
-                    echo "YES"
-                }
-                else {
-                    echo "NO"
-                }
+                def exists = fileExists bool
             }
         }
     }
