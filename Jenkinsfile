@@ -21,8 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                def list = getChangedFilesList()
-                echo list
+                getChangedFilesList()
             }
         }
     }
