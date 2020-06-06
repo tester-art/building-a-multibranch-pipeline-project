@@ -37,9 +37,7 @@ changed.each { item ->
 
         echo "i2 : " + i
     }
-    def exists = fileExists 'Jenkinsfile'
-
-if (exists) {
+if (fileExists('Jenkinsfile')) {
     echo 'Yes'
 } else {
     echo 'No'
