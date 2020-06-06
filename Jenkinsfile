@@ -23,7 +23,7 @@ pipeline {
                 sh 'echo "Hello world!"'
                 def changedfiles = []
                 changedfiles = getChangedFilesList()
-                echo changedfiles
+                echo "chnaged : " + changedfiles
             }
         }
     }
