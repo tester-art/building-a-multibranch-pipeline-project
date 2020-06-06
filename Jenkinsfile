@@ -23,6 +23,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "changes : " + getChangedFilesList()
+                echo getChangedFilesList()[0]
             }
         }
     }
