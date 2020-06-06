@@ -8,8 +8,7 @@ String getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "CHANGED : " + file.getPath()
-                String fileContents = file.toString()
-                echo fileContents
+                sh 'ls ' + file.getPath()
             }
         }
     }
