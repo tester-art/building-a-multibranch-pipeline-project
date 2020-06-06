@@ -8,6 +8,7 @@ def getChangedFilesList() {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
                 bool = file.toString()
+                echo "BOO " + bool
             }
         }
     }
