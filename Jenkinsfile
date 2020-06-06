@@ -34,6 +34,9 @@ changed.each { item ->
         echo "ITEM : ${item}"
     }
     for (i in changed) {
+        if (i.exists()){
+            echo "IT EXISTS!"
+        }
         echo "i2 : " + i
     }
                 }
