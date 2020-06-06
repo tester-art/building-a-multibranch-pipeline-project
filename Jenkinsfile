@@ -21,7 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                    getChangedFilesList().each { item ->
+                def changed = getChangedFilesList()
+                    changed.each { item ->
         echo "Hello ${item}"
     }
             }
