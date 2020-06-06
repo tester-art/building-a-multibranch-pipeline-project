@@ -22,8 +22,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-echo "changed" + getChangedFilesList()
-
+                def changed = getChangedFilesList()
+changed.each { item ->
+        sh "ITEM : ${item}"
+    }
                 }
             }
         }
