@@ -8,6 +8,10 @@ def getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
+                sh (
+        script: 'mkdir -p deploy_tmp',
+        returnStdout: true
+    )
             }
         }
     }
@@ -22,6 +26,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 getChangedFilesList()
+                sh 'ls'
             }
         }
     }
