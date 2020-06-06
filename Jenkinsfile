@@ -1,5 +1,8 @@
 // returns a list of changed files
-def getChangedFilesList() {
+@NonCPS
+String getChangedFilesList() {
+
+    changedFiles = []
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
@@ -8,6 +11,8 @@ def getChangedFilesList() {
             }
         }
     }
+
+return changedFiles
 }
 
 pipeline {
@@ -16,8 +21,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                getChangedFilesList()
-            }
+getChangedFilesList()
+
+                }
             }
         }
     }
