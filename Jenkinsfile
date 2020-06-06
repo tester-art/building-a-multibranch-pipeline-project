@@ -28,8 +28,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                def replayClassName = "org.jenkinsci.plugins.workflow.cps.replay.ReplayCause​"
-                def isReplay = currentBuild.rawBuild.getCauses().any{ cause -> cause.toString().contains(replayClassName) }
                 sh 'mkdir deploy_tmp'
                 detect_changes()
                 }
