@@ -1,7 +1,5 @@
 // returns a list of changed files
 def getChangedFilesList() {
-    def d = new File('newdir')
-    d.mkdir()
     changedFiles = []
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
@@ -25,6 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                sh 'mkdir deploy_tmp'
                 def changed = getChangedFilesList().unique()
 
 changed.each { item ->
