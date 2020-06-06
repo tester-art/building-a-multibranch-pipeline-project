@@ -8,11 +8,11 @@ String getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "CHANGED : " + file.getPath()
-                if (fileExists(file) {
-    echo 'Yes'
-} else {
-    echo 'No'
-}
+                if (fileExists(file)) {
+                    echo 'Yes'
+                } else {
+                    echo 'No'
+                }
             }
         }
     }
