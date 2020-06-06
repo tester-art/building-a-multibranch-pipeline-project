@@ -20,11 +20,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                script {
                 sh 'echo "Hello world!"'
                 def changed = getChangedFilesList()
                     changed.each { item ->
         echo "Hello ${item}"
     }
+                }
             }
         }
     }
