@@ -7,10 +7,7 @@ String getChangedFilesList() {
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
-                def exists = fileExists file.getPath()
-                if (exists) {
-                    echo "ADDED : " + file.getPath()
-                }
+                echo "CHANGED : " + file.getPath()
             }
         }
     }
