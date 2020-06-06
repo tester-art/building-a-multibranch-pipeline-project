@@ -7,7 +7,7 @@ def getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
-                bool = file.toString()
+                bool = file.getPath().toString()
                 echo "BOO " + bool
             }
         }
