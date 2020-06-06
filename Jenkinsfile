@@ -16,10 +16,7 @@ def getChangedFilesList() {
             script: 'dirname ' + i,
             returnStdout: true
         ).trim()
-        echo "DNAME : " + dirname
-        echo "i2p : " + i
-        if (fileExists(i)) {
-            echo 'Yess'
+        if (fileExists(i)&&dirname.equals("deployment")) {
             sh "mv " + i + " deploy_tmp"
         }
     }
