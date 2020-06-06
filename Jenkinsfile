@@ -14,6 +14,11 @@ def getChangedFilesList() {
                 if (bool.contains('J')) {
                     echo "YES"
                 }
+                if (fileExists(bool)) {
+    echo 'Yess'
+} else {
+    echo 'Noo'
+}
                 
             }
         }
