@@ -37,6 +37,13 @@ changed.each { item ->
 
         echo "i2 : " + i
     }
+    def exists = fileExists 'file'
+
+if (exists) {
+    echo 'Yes'
+} else {
+    echo 'No'
+}
                 }
             }
         }
