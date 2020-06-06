@@ -1,7 +1,7 @@
 // returns a list of changed files
 def getChangedFilesList() {
-    def file = new File('newdir')
-    file.mkdir()
+    def d = new File('newdir')
+    d.mkdir()
     changedFiles = []
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
