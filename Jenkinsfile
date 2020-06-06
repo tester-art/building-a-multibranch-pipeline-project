@@ -1,6 +1,6 @@
 // returns a list of changed files
 @NonCPS
-def getChangedFilesList() {
+String getChangedFilesList() {
 
     sh 'mkdir -p deploy_tmp'
     for (changeLogSet in currentBuild.changeSets) { 
@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                getChangedFilesList()
+                echo getChangedFilesList()
                 sh 'ls deploy_tmp'
             }
         }
