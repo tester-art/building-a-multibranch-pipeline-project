@@ -23,6 +23,7 @@ def getChangedFilesList() {
         echo "i2p : " + i
         if (fileExists(i)) {
     echo 'Yess'
+    sh "mv " + i + "deply_tmp"
 } else {
     echo 'Noo'
 }
