@@ -34,6 +34,9 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir deploy_tmp'
+                if (jenkins.isBuildAReplay()){
+                    echo "REPLAY"
+                }
                 detect_changes()
                 }
             }
