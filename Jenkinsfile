@@ -28,8 +28,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                sh 'mkdir deploy_tmp'
-                detect_changes()
+                    sh 'mkdir deploy_tmp'
+                    detect_changes()
                 }
             }
         }
