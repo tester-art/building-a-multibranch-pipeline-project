@@ -28,7 +28,6 @@ def getChangedFilesList() {
     echo 'Noo'
 }
     }
-return changedFiles
 }
 
 pipeline {
@@ -38,20 +37,7 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir deploy_tmp'
-                def changed = getChangedFilesList().unique()
-
-changed.each { item ->
-        echo "ITEM : ${item}"
-    }
-    for (i in changed) {
-
-        echo "i2 : " + i
-    }
-if (fileExists('Jenkinsfile')) {
-    echo 'Yes'
-} else {
-    echo 'No'
-}
+                getChangedFilesList()
                 }
             }
         }
