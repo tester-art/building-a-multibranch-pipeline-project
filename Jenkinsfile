@@ -34,9 +34,6 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir deploy_tmp'
-                if (isBuildAReplay()){
-                    echo "REPLAY"
-                }
                 detect_changes()
                 }
             }
