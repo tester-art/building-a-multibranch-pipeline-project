@@ -24,7 +24,7 @@ pipeline {
                 script {
                 def changed = getChangedFilesList()
 changed.each { item ->
-        sh "ITEM : ${item}"
+        echo "ITEM : ${item}"
     }
                 }
             }
