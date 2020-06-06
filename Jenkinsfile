@@ -23,10 +23,7 @@ pipeline {
                 script {
                 sh 'echo "Hello world!"'
           
-def changed = getChangedFilesList().trim()
-     for(String f : changed.split("\\r?\\n")){
-            echo "FILE : ${f}"        
-    }
+     getChangedFilesList().each { println it }
                 }
             }
         }
