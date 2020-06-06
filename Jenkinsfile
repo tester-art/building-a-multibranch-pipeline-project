@@ -16,7 +16,7 @@ def detect_changes() {
             script: 'dirname ' + f,
             returnStdout: true
         ).trim()
-        if (fileExists(i)&&dirname.equals("deployment")) {
+        if (fileExists(f)&&dirname.equals("deployment")) {
             sh "mv " + f + " deploy_tmp"
         }
     }
