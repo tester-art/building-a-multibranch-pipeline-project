@@ -9,7 +9,7 @@ def getChangedFilesList() {
                 echo "type : " + file.getEditType().getName()
                 bool = file.getPath().toString()
                 echo "BOO " + bool
-                def exists = fileExists bool
+                fileExists bool
             }
         }
     }
