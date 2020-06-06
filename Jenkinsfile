@@ -22,8 +22,10 @@ pipeline {
             steps {
                 script {
                 sh 'echo "Hello world!"'
-                    getChangedFilesList().trim().each { item ->
-        echo "Hello ${item}"
+          
+def changed = getChangedFilesList()
+     for(String f : changed.split("\\r?\\n")){
+            echo "FILE : ${f}"        
     }
                 }
             }
