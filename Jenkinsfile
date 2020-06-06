@@ -22,6 +22,11 @@ def detect_changes() {
     }
 }
 
+def isBuildAReplay() {
+  def replyClassName = "org.jenkinsci.plugins.workflow.cps.replay.ReplayCause"
+  currentBuild.rawBuild.getCauses().any{ cause -> cause.toString().contains(replyClassName) }
+}
+
 pipeline {
     agent any
     stages {
@@ -29,6 +34,9 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir deploy_tmp'
+                if (isBuildAReplay()){
+                    echo "REPLAY"
+                }
                 detect_changes()
                 }
             }
