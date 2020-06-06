@@ -7,9 +7,12 @@ String getChangedFilesList() {
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
-                if (file.exists()){
                 echo "CHANGED : " + file.getPath()
-                }
+                if (fileExists(file.getPath())) {
+    echo 'Yes'
+} else {
+    echo 'No'
+}
             }
         }
     }
