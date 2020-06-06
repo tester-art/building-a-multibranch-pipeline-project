@@ -1,5 +1,5 @@
 // returns a list of changed files
-
+@NonCPS
 def getChangedFilesList() {
 
     sh 'mkdir -p deploy_tmp'
