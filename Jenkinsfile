@@ -1,5 +1,5 @@
 // returns a list of changed files
-@NonCPS
+
 def getChangedFilesList() {
 
     sh 'mkdir -p deploy_tmp'
@@ -21,6 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
+                getChangedFilesList()
                 sh 'ls deploy_tmp'
             }
         }
