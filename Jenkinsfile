@@ -5,15 +5,15 @@ def getChangedFilesList() {
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
-                changedFiles.add(file.getPath()) // add changed file to list
+                //changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
                 bool = file.getPath().toString()
                 echo "BOO " + bool
-                fileExists bool
+                changedFiles.add(bool)
             }
         }
     }
-
+return changedFiles
 }
 
 pipeline {
@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-getChangedFilesList()
+echo "changed" + getChangedFilesList()
 
                 }
             }
