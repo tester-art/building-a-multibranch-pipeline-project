@@ -23,8 +23,9 @@ pipeline {
                 script {
                 sh 'echo "Hello world!"'
           
-     getChangedFilesList().each { println it }
-                }
+for(String item: getChangedFilesList()) {
+                        println item
+                    }                }
             }
         }
     }
