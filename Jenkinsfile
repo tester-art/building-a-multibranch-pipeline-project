@@ -22,8 +22,7 @@ pipeline {
             steps {
                 script {
                 sh 'echo "Hello world!"'
-                def changed = getChangedFilesList()
-                    changed.each { item ->
+                    getChangedFilesList().each { item ->
         echo "Hello ${item}"
     }
                 }
