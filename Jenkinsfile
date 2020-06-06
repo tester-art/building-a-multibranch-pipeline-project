@@ -1,6 +1,5 @@
 // returns a list of changed files
-@NonCPS
-String getChangedFilesList() {
+def getChangedFilesList() {
 
     changedFiles = []
     for (changeLogSet in currentBuild.changeSets) { 
@@ -12,7 +11,6 @@ String getChangedFilesList() {
         }
     }
 
-return changedFiles
 }
 
 pipeline {
