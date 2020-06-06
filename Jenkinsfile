@@ -25,6 +25,7 @@ pipeline {
             steps {
                 script {
                 sh 'echo "Hello world!"'
+                getChangedFilesList()
             }
             }
         }
