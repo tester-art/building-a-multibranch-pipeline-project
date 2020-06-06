@@ -33,4 +33,9 @@ changed.each { item ->
             }
         }
     }
+    post {
+        always {
+            sh "rm -rf *"
+        }
+    }
 }
