@@ -18,8 +18,9 @@ def getChangedFilesList() {
             }
         }
     }
-    changedFiles.each { item ->
-        echo "ITEM_p : ${item}"
+    for (i in changedFiles.unique()) {
+
+        echo "i2p : " + i
     }
 return changedFiles
 }
