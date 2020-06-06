@@ -11,10 +11,8 @@ def getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
-                sh (
-        script: 'mv ' + file.getPath() + ' deploy_tmp',
-        returnStdout: true
-    )
+                file = file.getPath()
+                echo 'FILE : ' + file
             }
         }
     }
