@@ -11,7 +11,9 @@ def getChangedFilesList() {
             }
         }
     }
-
+    changedFiles.each { item ->
+        echo "Hello ${item}"
+    }
 
 }
 
