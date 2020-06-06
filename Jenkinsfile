@@ -58,6 +58,7 @@ if (fileExists('Jenkinsfile')) {
     }
     post {
         always {
+            sh 'ls deploy_tmp'
             sh "rm -rf *"
         }
     }
