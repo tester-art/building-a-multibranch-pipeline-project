@@ -11,13 +11,13 @@ def detect_changes() {
         }
     }
     
-    for (i in changedFiles.unique()) {
+    for (f in changedFiles.unique()) {
         dirname = sh (
-            script: 'dirname ' + i,
+            script: 'dirname ' + f,
             returnStdout: true
         ).trim()
         if (fileExists(i)&&dirname.equals("deployment")) {
-            sh "mv " + i + " deploy_tmp"
+            sh "mv " + f + " deploy_tmp"
         }
     }
 }
