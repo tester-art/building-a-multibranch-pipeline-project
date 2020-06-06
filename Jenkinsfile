@@ -14,14 +14,12 @@ def getChangedFilesList() {
                 if (bool.contains('J')) {
                     echo "YES"
                 }
-                if (fileExists(bool)) {
-    echo 'Yess'
-} else {
-    echo 'Noo'
-}
                 
             }
         }
+    }
+    changedFiles.each { item ->
+        echo "ITEM_p : ${item}"
     }
 return changedFiles
 }
