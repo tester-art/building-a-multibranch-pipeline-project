@@ -8,7 +8,7 @@ String getChangedFilesList() {
             for (file in entry.getAffectedFiles()) {
                 changedFiles.add(file.getPath()) // add changed file to list
                 echo "type : " + file.getEditType().getName()
-                echo "parent : " + file.getParentFile().getName()
+                sh 'dirname ' + file.getPath()
             }
         }
     }
