@@ -9,7 +9,9 @@ def getChangedFilesList() {
                 echo "type : " + file.getEditType().getName()
                 bool = file.getPath().toString()
                 echo "BOO " + bool
+                if(file.getEditType().getName().equals("add")) {
                 changedFiles.add(bool)
+                }
             }
         }
     }
