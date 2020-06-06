@@ -22,8 +22,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Hello world!"'
-                def new_files = []
-                new_files = getChangedFilesList()
+                echo "changes : " + getChangedFilesList()
+                def new_files = getChangedFilesList()
                 echo "changes : " + new_files
 
             }
