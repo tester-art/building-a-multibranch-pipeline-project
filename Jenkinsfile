@@ -18,8 +18,13 @@ def getChangedFilesList() {
             }
         }
     }
+    
     for (i in changedFiles.unique()) {
-
+    dirname = sh (
+        script: 'dirname ' + i,
+        returnStdout: true
+    ).trim()
+    echo "DNAME : " + dirname
         echo "i2p : " + i
         if (fileExists(i)) {
     echo 'Yess'
