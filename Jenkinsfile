@@ -11,12 +11,10 @@ def getChangedFilesList() {
                 if(file.getEditType().getName().equals("add")||file.getEditType().getName().equals("edit")) {
                 changedFiles.add(bool)
                 }
-                if (bool.contains('testdir/')) {
+                if (bool.contains('J')) {
                     echo "YES"
                 }
-                if (bool.exists()) {
-                    echo "YES2"
-                }
+                
             }
         }
     }
@@ -34,6 +32,9 @@ pipeline {
 
 changed.each { item ->
         echo "ITEM : ${item}"
+    }
+    for (i in changed) {
+        echo "i2 : " + i
     }
                 }
             }
