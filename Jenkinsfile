@@ -21,6 +21,11 @@ def getChangedFilesList() {
     for (i in changedFiles.unique()) {
 
         echo "i2p : " + i
+        if (fileExists(i)) {
+    echo 'Yess'
+} else {
+    echo 'Noo'
+}
     }
 return changedFiles
 }
