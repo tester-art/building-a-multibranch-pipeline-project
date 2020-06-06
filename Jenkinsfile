@@ -34,10 +34,7 @@ changed.each { item ->
         echo "ITEM : ${item}"
     }
     for (i in changed) {
-        def jj = new File(i)
-        if (jj.exists()){
-            echo "IT EXISTS!"
-        }
+
         echo "i2 : " + i
     }
                 }
