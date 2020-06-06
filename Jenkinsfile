@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                 sh 'echo "Hello world!"'
-                    getChangedFilesList().each { item ->
+                    getChangedFilesList().trim().each { item ->
         echo "Hello ${item}"
     }
                 }
