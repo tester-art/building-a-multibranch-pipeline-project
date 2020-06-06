@@ -11,6 +11,9 @@ String getChangedFilesList() {
             }
         }
     }
+    script {
+                sh 'mkdir hello'
+            }
 
 return changedFiles
 }
@@ -22,10 +25,7 @@ pipeline {
             steps {
                 script {
                 sh 'echo "Hello world!"'
-          
-for(String item: getChangedFilesList()) {
-                        println item
-                    }                }
+            }
             }
         }
     }
