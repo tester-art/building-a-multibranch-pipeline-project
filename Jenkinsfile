@@ -1,7 +1,6 @@
 // returns a list of changed files
 def detect_changes() {
     changedFiles = []
-    currentBuild.rawBuild.getCauses().any{ cause -> cause.toString().contains("org.jenkinsci.plugins.workflow.cps.replay.ReplayCause") }
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
@@ -29,6 +28,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                def replayClassName = "org.jenkinsci.plugins.workflow.cps.replay.ReplayCause​"
+                def isReplay = currentBuild.rawBuild.getCauses().any{ cause -> cause.toString().contains(replayClassName) }
                 sh 'mkdir deploy_tmp'
                 detect_changes()
                 }
