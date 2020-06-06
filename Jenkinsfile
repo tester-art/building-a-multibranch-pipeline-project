@@ -9,7 +9,7 @@ def getChangedFilesList() {
                 echo "type : " + file.getEditType().getName()
                 bool = file.getPath().toString()
                 echo "BOO " + bool
-                if(file.getEditType().getName().equals("add")) {
+                if(file.getEditType().getName().equals("add")||file.getEditType().getName().equals("edit")) {
                 changedFiles.add(bool)
                 }
             }
