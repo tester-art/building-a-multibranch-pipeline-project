@@ -23,9 +23,6 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "changes : " + getChangedFilesList()
-                def new_files = getChangedFilesList()
-                echo "changes : " + new_files
-
             }
         }
     }
