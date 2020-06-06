@@ -23,6 +23,11 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "changes : " + getChangedFilesList()
+                script {
+                    getChangedFilesList().tokenize(',').each {
+                        println "Item: ${it}"
+                    }
+                }
             }
         }
     }
