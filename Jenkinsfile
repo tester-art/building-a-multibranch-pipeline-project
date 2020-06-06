@@ -1,8 +1,7 @@
 // returns a list of changed files
-@NonCPS
-String getChangedFilesList() {
 
-    changedFiles = []
+def getChangedFilesList() {
+
     sh 'mkdir -p deploy_tmp'
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
@@ -14,8 +13,6 @@ String getChangedFilesList() {
         }
     }
 
-    return changedFiles
-
 }
 
 pipeline {
@@ -25,7 +22,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 echo "changes : " + getChangedFilesList()
-                sh 'ls'
+                sh 'ls deploy_tmp'
             }
         }
     }
