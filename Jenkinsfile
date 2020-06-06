@@ -11,8 +11,9 @@ def getChangedFilesList() {
             }
         }
     }
+    sh 'mkdir deploy_tmp'
     changedFiles.each { item ->
-        echo "Hello ${item}"
+        sh "mv ${item} deploy_tmp"
     }
 
 }
@@ -24,6 +25,7 @@ pipeline {
             steps {
                 sh 'echo "Hello world!"'
                 getChangedFilesList()
+                sh 'ls deploy_tmp'
             }
         }
     }
