@@ -2,8 +2,8 @@
 def detect_changes() {
     changedFiles = []
     isReplay = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
-    if (isReplay.size() != 0) {
-        lastBuildNo = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0].tokenize("#")[1].toInteger()
+    if (isReplay.size()) {
+        lastBuildNo = isReplay.shortDescription[0].tokenize("#")[1].toInteger()
         changedFiles = getOriginalBuild(currentBuild.getPreviousBuild(), lastBuildNo)
     }
     else {
@@ -15,7 +15,7 @@ def detect_changes() {
             script: 'dirname ' + f,
             returnStdout: true
         ).trim()
-        if (fileExists(f)&&dirname.equals("deployment")) {
+        if (fileExists(f) && dirname.equals("deployment")) {
             sh "mv " + f + " deploy_tmp"
         }
     }
@@ -39,13 +39,14 @@ def getOriginalBuild(build, buildNo) {
     if (build != null) {
         isReplay = build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
       
-        if (isReplay.size() != 0 && build.getNumber() == buildNo) {
-            lastBuildID = build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0].tokenize("#")[1].toInteger()
-            buildNo = lastBuildID
-        }
-
-        if (build.getNumber() == buildNo && isReplay.size() == 0) {
-            return fetchChangeset(build)
+        if (build.getNumber() == buildNo) {
+            if (isReplay.size()) {
+                lastBuildID = isReplay.shortDescription[0].tokenize("#")[1].toInteger()
+                buildNo = lastBuildID
+            }
+            else {
+                return fetchChangeset(build)
+            }
         }
         getOriginalBuild(build.getPreviousBuild(), buildNo);
     }
