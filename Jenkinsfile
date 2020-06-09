@@ -4,6 +4,7 @@ def detect_changes() {
     echo "CURR BUILD : " + currentBuild
     echo "CURR BUILD CAUSE : " + currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
     echo "CURR BUILD NUMBER : " + currentBuild.getNumber()
+    echo "CURR BUILD RESULT : " currentBuild.result
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
@@ -28,13 +29,14 @@ def detect_changes() {
 
 def lastSuccessfullBuild(build) {
     passedBuilds = []
-    if(build != null && build.result != 'FAILURE') {
+    if(build != null) {
         //Recurse now to handle in chronological order
         lastSuccessfullBuild(build.getPreviousBuild());
         //Add the build to the array
         echo "BUILD : " + build
         echo "BUILD CAUSE : " + build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
         echo "BUILD NUMBER : " + build.getNumber()
+        echo "BUILD RESULT : " + build.result
         for (changeLogSet in build.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
