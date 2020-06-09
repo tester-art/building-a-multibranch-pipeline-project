@@ -47,6 +47,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    lastSuccessfullBuild(currentBuild.getPreviousBuild());
                     sh 'mkdir deploy_tmp'
                     detect_changes()
                 }
