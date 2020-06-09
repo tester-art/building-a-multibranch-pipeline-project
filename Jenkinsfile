@@ -6,10 +6,13 @@ def detect_changes() {
     echo "CURR BUILD RESULT : " + currentBuild.result
     isReplay = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
     if (isReplay.size() != 0) {
-        echo "IT IS A REPLAY"
-        cbuildno = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription
-        replayed_from = cbuildno.substring(cbuildno.lastIndexOf("#") + 1)
-        echo "REPLAYED FROM : " + cbuildno
+         echo "IT IS A REPLAY"
+        cbuildno = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0]
+        echo "rep num : " + cbuildno.tokenize("#")[1]
+        lastBuildID = cbuildno.tokenize("#")[1]
+        if (lastBuildID.toInteger() == 336) {
+            echo "OUI!"
+        }
     }
     else {
         echo "NOT A REPLAY"
