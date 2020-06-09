@@ -1,6 +1,9 @@
 // returns a list of changed files
 def detect_changes() {
     changedFiles = []
+    echo "CURR BUILD : " + build
+    echo "CURR BUILD CAUSE : " + build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
+    echo "CURR BUILD NUMBER : " + build.getNumber()
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
