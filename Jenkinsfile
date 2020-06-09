@@ -31,6 +31,7 @@ def lastSuccessfullBuild(build) {
         //Add the build to the array
         echo "BUILD : " + build
         echo "BUILD CAUSE : " + build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
+        echo "BUILD NUMBER : " + build.getNumber()
         for (changeLogSet in build.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
