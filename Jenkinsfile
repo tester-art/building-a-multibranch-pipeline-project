@@ -1,10 +1,16 @@
 // returns a list of changed files
 def detect_changes() {
     changedFiles = []
-    echo "CURR BUILD : " + currentBuild
     echo "CURR BUILD CAUSE : " + currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
     echo "CURR BUILD NUMBER : " + currentBuild.getNumber()
     echo "CURR BUILD RESULT : " + currentBuild.result
+    isReplay = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
+    if (isReplay != null) {
+        echo "IT IS A REPLAY"
+    }
+    else {
+        echo "NOT A REPLAY"
+    }
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
@@ -33,14 +39,13 @@ def lastSuccessfullBuild(build) {
         //Recurse now to handle in chronological order
         lastSuccessfullBuild(build.getPreviousBuild());
         //Add the build to the array
-        echo "BUILD : " + build
         echo "BUILD CAUSE : " + build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
         echo "BUILD NUMBER : " + build.getNumber()
         echo "BUILD RESULT : " + build.result
         for (changeLogSet in build.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
-                    echo "change set file : " + file.getPath().toString(); 
+                    echo "CHANGES : " + file.getPath().toString(); 
             }
         }
     }
