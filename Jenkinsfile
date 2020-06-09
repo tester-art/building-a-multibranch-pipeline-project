@@ -5,7 +5,7 @@ def detect_changes() {
     echo "CURR BUILD NUMBER : " + currentBuild.getNumber()
     echo "CURR BUILD RESULT : " + currentBuild.result
     isReplay = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
-    if (!isReplay.isEmpty()) {
+    if (isReplay.size() != 0) {
         echo "IT IS A REPLAY"
     }
     else {
