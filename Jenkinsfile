@@ -22,6 +22,25 @@ def detect_changes() {
     }
 }
 
+
+def lastSuccessfullBuild(build) {
+    passedBuilds = []
+    if(build != null && build.result != 'FAILURE') {
+        //Recurse now to handle in chronological order
+        lastSuccessfullBuild(build.getPreviousBuild());
+        //Add the build to the array
+        echo "BUILD : " + build
+        for (changeLogSet in build.changeSets) { 
+        for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
+            for (file in entry.getAffectedFiles()) {
+                    echo "change set file : " + file.getPath().toString(); 
+            }
+        }
+    }
+        passedBuilds.add(build);
+    }
+ }
+
 pipeline {
     agent any
     stages {
