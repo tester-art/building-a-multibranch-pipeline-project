@@ -4,7 +4,7 @@ def detect_changes() {
     echo "CURR BUILD : " + currentBuild
     echo "CURR BUILD CAUSE : " + currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
     echo "CURR BUILD NUMBER : " + currentBuild.getNumber()
-    echo "CURR BUILD RESULT : " currentBuild.result
+    echo "CURR BUILD RESULT : " + currentBuild.result
     for (changeLogSet in currentBuild.changeSets) { 
         for (entry in changeLogSet.getItems()) { // for each commit in the detected changes
             for (file in entry.getAffectedFiles()) {
