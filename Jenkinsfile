@@ -3,12 +3,11 @@ def detect_changes() {
     changedFiles = []
     isReplay = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
     if (isReplay.size() != 0) {
-        cbuildno = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0]
-        lastBuildID = cbuildno.tokenize("#")[1].toInteger()
-        changedFiles = lastSuccessfullBuild(currentBuild.getPreviousBuild(), lastBuildID)
+        lastBuildNo = currentBuild.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0].tokenize("#")[1].toInteger()
+        changedFiles = getOriginalBuild(currentBuild.getPreviousBuild(), lastBuildNo)
     }
     else {
-        changedFiles = get_changes(currentBuild)
+        changedFiles = fetchChangeset(currentBuild)
     }
     
     for (f in changedFiles.unique()) {
@@ -22,7 +21,7 @@ def detect_changes() {
     }
 }
 
-def get_changes(build) {
+def fetchChangeset(build) {
     changedFiles = []
     for (changeLogSet in build.changeSets) { 
         for (entry in changeLogSet.getItems()) {
@@ -36,22 +35,19 @@ def get_changes(build) {
     return changedFiles
 }
 
-def lastSuccessfullBuild(build, bno) {
-    changedFiles = []
+def getOriginalBuild(build, buildNo) {
     if (build != null) {
         isReplay = build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause')
       
-        if (isReplay.size() != 0 && build.getNumber() == bno) {
-            cbuildno = build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0]
-            lastBuildID = cbuildno.tokenize("#")[1].toInteger()
-            bno = lastBuildID
+        if (isReplay.size() != 0 && build.getNumber() == buildNo) {
+            lastBuildID = build.getBuildCauses('org.jenkinsci.plugins.workflow.cps.replay.ReplayCause').shortDescription[0].tokenize("#")[1].toInteger()
+            buildNo = lastBuildID
         }
 
-        if (build.getNumber() == bno && isReplay.size() == 0) {
-            changedFiles = get_changes(build)
-            return changedFiles
+        if (build.getNumber() == buildNo && isReplay.size() == 0) {
+            return fetchChangeset(build)
         }
-        lastSuccessfullBuild(build.getPreviousBuild(), bno);
+        getOriginalBuild(build.getPreviousBuild(), buildNo);
     }
 }
 
